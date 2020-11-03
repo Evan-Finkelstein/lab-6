@@ -12,13 +12,15 @@ async function run() {
 
     // run a query to create tables
     await client.query(`
-                 
+              
                 CREATE TABLE food (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
                     type VARCHAR(512) NOT NULL,
                     flavor INTEGER NOT NULL,
                     is_food BOOLEAN NOT NULL,
+                    owner_id INTEGER NOT NULL REFERENCES users(id)
+
             );
         `);
 
