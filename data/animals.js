@@ -1,17 +1,20 @@
 module.exports = [
   {
     name: 'bessie',
-    cool_factor: 377,
-    type: 'meat'
+
+    factor: 4444,
+
   },
   {
     name: 'jumpy',
-    cool_factor: 4,
-    type: 'meat'
+
+    factor: 4444,
+
   },
   {
     name: 'spot',
-    cool_factor: 10,
-    type: 'meat'
+
+    factor: 4444,
+
   }
 ];
