@@ -102,7 +102,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-    test.only('adds a food to the DB and returns it', async () => {
+    test('adds a food to the DB and returns it', async () => {
       const expectation = {
         id: 5,
         name: 'cookie',
@@ -151,7 +151,7 @@ describe('app routes', () => {
 
 
       const data = await fakeRequest(app)
-        .push('/food/1')
+        .put('/food/1')
         .send({
           id: 1,
           name: 'a',
@@ -167,44 +167,21 @@ describe('app routes', () => {
     });
     test('returns food', async () => {
 
-      const expectation = [
+      const expectation = {
+        id: 1,
+        name: 'a',
+        is_good: false,
+        flavor: 7,
+        type: 'c',
+        owner_id: 1,
 
-        {
-          id: 2,
-          name: 'bagle',
-          is_good: true,
-          flavor: 4444,
-          type: 'breakfast',
-          owner_id: 1,
+      };
 
-
-        },
-        {
-          id: 3,
-          name: 'apple',
-          is_good: true,
-          flavor: 10,
-          type: 'fruit',
-          owner_id: 1,
-
-
-        },
-        {
-          id: 4,
-          name: 'bacon',
-          is_good: true,
-          flavor: 10,
-          type: 'meat',
-          owner_id: 1,
-
-
-        }
-      ];
 
 
       const data = await fakeRequest(app)
         .delete('/food/1')
-        .expect('Content-Type', /json/)
+
         .expect(200);
 
       expect(data.body).toEqual(expectation);
