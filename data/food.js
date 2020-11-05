@@ -3,15 +3,13 @@ module.exports = [
     name: 'pizza',
     is_good: true,
     flavor: 377,
-    type: 'dinner'
-
-
+    type_id: 3,
   },
   {
     name: 'bagle',
     is_good: true,
     flavor: 4444,
-    type: 'breakfast'
+    type_id: 1,
 
 
   },
@@ -19,16 +17,12 @@ module.exports = [
     name: 'apple',
     is_good: true,
     flavor: 10,
-    type: 'fruit'
-
-
+    type_id: 4,
   },
   {
     name: 'bacon',
     is_good: true,
     flavor: 10,
-    type: 'meat'
-
-
+    type_id: 2,
   }
 ];

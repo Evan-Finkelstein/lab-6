@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { execSync } = require('child_process');
+const { on } = require('process');
 
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
@@ -39,17 +40,17 @@ describe('app routes', () => {
           name: 'pizza',
           is_good: true,
           flavor: 377,
+
           type: 'dinner',
-          owner_id: 1,
 
         },
         {
           id: 2,
           name: 'bagle',
           is_good: true,
+
           flavor: 4444,
           type: 'breakfast',
-          owner_id: 1,
 
 
         },
@@ -57,9 +58,9 @@ describe('app routes', () => {
           id: 3,
           name: 'apple',
           is_good: true,
+
           flavor: 10,
           type: 'fruit',
-          owner_id: 1,
 
 
         },
@@ -69,7 +70,6 @@ describe('app routes', () => {
           is_good: true,
           flavor: 10,
           type: 'meat',
-          owner_id: 1,
 
 
         }
@@ -83,14 +83,43 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-    test('returns a single banjo', async () => {
+    test('returns type', async () => {
+
+      const expectation = [
+        {
+          id: 1,
+          type: 'breakfast'
+        },
+        {
+          id: 2,
+          type: 'meat'
+        },
+        {
+          id: 3,
+          type: 'dinner'
+        },
+        {
+          id: 4,
+          type: 'fruit'
+        }
+      ];
+
+
+      const data = await fakeRequest(app)
+        .get('/type')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns a single food', async () => {
       const expectation = {
         id: 1,
         name: 'pizza',
         is_good: true,
         flavor: 377,
         type: 'dinner',
-        owner_id: 1,
 
       };
 
@@ -108,7 +137,7 @@ describe('app routes', () => {
         name: 'cookie',
         is_good: true,
         flavor: 377,
-        type: 'desert',
+        type_id: 1,
         owner_id: 1,
 
       };
@@ -119,7 +148,7 @@ describe('app routes', () => {
           name: 'cookie',
           is_good: true,
           flavor: 377,
-          type: 'desert',
+          type_id: 1,
           owner_id: 1,
         })
         .expect('Content-Type', /json/)
@@ -134,7 +163,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
       expect(allFood.body.length).toEqual(5);
     });
-    test('returns food', async () => {
+    test.skip('returns food', async () => {
 
       const expectation =
       {
@@ -142,7 +171,7 @@ describe('app routes', () => {
         name: 'a',
         is_good: false,
         flavor: 7,
-        type: 'c',
+        type: 'dinner',
         owner_id: 1,
 
       };
@@ -165,7 +194,7 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-    test('returns food', async () => {
+    test.skip('returns food', async () => {
 
       const expectation = {
         id: 1,
