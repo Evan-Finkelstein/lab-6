@@ -39,17 +39,17 @@ describe('app routes', () => {
           name: 'pizza',
           is_good: true,
           flavor: 377,
+
           type: 'dinner',
-          owner_id: 1,
 
         },
         {
           id: 2,
           name: 'bagle',
           is_good: true,
+
           flavor: 4444,
           type: 'breakfast',
-          owner_id: 1,
 
 
         },
@@ -57,9 +57,9 @@ describe('app routes', () => {
           id: 3,
           name: 'apple',
           is_good: true,
+
           flavor: 10,
           type: 'fruit',
-          owner_id: 1,
 
 
         },
@@ -69,7 +69,6 @@ describe('app routes', () => {
           is_good: true,
           flavor: 10,
           type: 'meat',
-          owner_id: 1,
 
 
         }
@@ -83,14 +82,43 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-    test('returns a single banjo', async () => {
+    test.only('returns type', async () => {
+
+      const expectation = [
+        {
+          id: 1,
+          type: 'breakfast'
+        },
+        {
+          id: 2,
+          type: 'meat'
+        },
+        {
+          id: 3,
+          type: 'dinner'
+        },
+        {
+          id: 4,
+          type: 'fruit'
+        }
+      ];
+
+
+      const data = await fakeRequest(app)
+        .get('/type')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns a single food', async () => {
       const expectation = {
         id: 1,
         name: 'pizza',
         is_good: true,
         flavor: 377,
         type: 'dinner',
-        owner_id: 1,
 
       };
 

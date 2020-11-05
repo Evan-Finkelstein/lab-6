@@ -9,6 +9,6 @@ module.exports = [
         type: 'dinner'
     },
     {
-        type: 'desert'
+        type: 'fruit'
     }
 ];

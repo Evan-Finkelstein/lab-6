@@ -22,7 +22,7 @@ async function run() {
                     name VARCHAR(512) NOT NULL,
                     is_good BOOLEAN NOT NULL,
                     flavor INTEGER NOT NULL,
-                    type_id INTEGER NOT NULL REFERENCES type(id),
+                    type_id INTEGER NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
                 CREATE TABLE type (
